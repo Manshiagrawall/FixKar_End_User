@@ -3,15 +3,15 @@ const jwt = require('jsonwebtoken');
 
 // Get all services for users
 exports.getAllServices = async (req, res) => {
-  const token = req.headers.authorization?.split(' ')[1];
+  // const token = req.headers.authorization?.split(' ')[1];
 
-  if (!token) {
-    return res.status(401).json({ message: 'No token provided' });
-  }
+  // if (!token) {
+  //   return res.status(401).json({ message: 'No token provided' });
+  // }
 
   try {
-    // Verify the token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // Verify the token (commented out)
+    // const decoded = jwt.verify(token, process.env.JWT_SECRET);
     // Optionally, you can retrieve user information from the decoded token if needed
 
     const services = await Service.find();
@@ -24,16 +24,16 @@ exports.getAllServices = async (req, res) => {
 
 // Get a specific service by ID
 exports.getServiceById = async (req, res) => {
-  const token = req.headers.authorization?.split(' ')[1];
+  // const token = req.headers.authorization?.split(' ')[1];
   const { id } = req.params; // Service ID
 
-  if (!token) {
-    return res.status(401).json({ message: 'No token provided' });
-  }
+  // if (!token) {
+  //   return res.status(401).json({ message: 'No token provided' });
+  // }
 
   try {
-    // Verify the token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // Verify the token (commented out)
+    // const decoded = jwt.verify(token, process.env.JWT_SECRET);
     // Optionally, you can retrieve user information from the decoded token if needed
 
     const service = await Service.findById(id);

@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     city: { type: String, required: false },
     locality: { type: String, required: false }
   },
-  gender: { type: String, required: false }, // Optional
+  gender: { type: String, required: false }, // Optional 
 }, {
   timestamps: true // Automatically adds createdAt and updatedAt fields
 });
