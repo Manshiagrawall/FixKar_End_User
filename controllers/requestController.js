@@ -55,8 +55,18 @@ exports.getRequests = async (req, res) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const userId = decoded.user.id;
 
-        // Fetch all requests for the user
-        const requests = await Booking.find({ userId: userId }).populate('service');
+        // Fetch all requests for the user, populate the service and provider details
+        const requests = await Booking.find({ userId: userId })
+            .populate({
+                path: 'serviceId', // Correct path to populate service details
+                select: 'name description category price address image provider', // Only the fields you want including provider reference
+                populate: {
+                    path: 'provider', // Populating the provider details inside service
+                    model: 'Provider', // Make sure this matches the name of your Provider model
+                    select: 'name phone email accountType image' // Select relevant provider fields
+                }
+            });
+
         res.status(200).json({ requests });
     } catch (err) {
         console.error('Error fetching requests:', err.message);

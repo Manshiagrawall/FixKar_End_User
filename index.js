@@ -4,6 +4,7 @@ const userRoutes = require('./routes/userRoutes');
 const cors = require('cors');
 const requestRoutes = require('./routes/requestRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use('/users', userRoutes);
 app.use('/users', requestRoutes);
 app.use('/users', serviceRoutes);
+app.use('/users', reviewRoutes);
 
 // Database connection and server start
 dbConnect()
