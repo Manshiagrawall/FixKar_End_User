@@ -96,3 +96,17 @@ exports.getServiceById = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+exports.getServicesByCategory = async (req, res) => {
+  const { category } = req.params;
+  try {
+      const services = await Service.find({ category: category });
+      if (!services.length) {
+          return res.status(404).json({ message: 'No services found for this category.' });
+      }
+      res.status(200).json({ services });
+  } catch (err) {
+      console.error('Error fetching services by category:', err.message);
+      res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};

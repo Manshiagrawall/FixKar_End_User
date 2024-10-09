@@ -9,4 +9,6 @@ router.get('/getAllServices', userServiceController.getAllServices);
 // Route to get a specific service by ID
 router.get('/getService/:id', userServiceController.getServiceById);
 
+router.get('/getServicesByCategory/:category', userServiceController.getServicesByCategory);
+
 module.exports = router;
